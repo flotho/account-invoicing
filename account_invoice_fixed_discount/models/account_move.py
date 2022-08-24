@@ -27,7 +27,7 @@ class AccountMove(models.Model):
     @api.model
     def create(self, vals):
         res = super().create(vals)
-        if any([l.discount_fixed for l in res.invoice_line_ids ] ):
+        if any([l.discount_fixed for l in res.invoice_line_ids]):
             res.with_context(check_move_validity=False)._recompute_tax_lines()
             res.with_context(check_move_validity=False)._onchange_invoice_line_ids()
         return res
