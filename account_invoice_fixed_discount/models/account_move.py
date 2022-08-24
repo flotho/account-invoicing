@@ -24,6 +24,7 @@ class AccountMove(models.Model):
             line.update(vals[line])
         return res
     
+    
     @api.model
     def create(self, vals):
         res = super().create(vals)
