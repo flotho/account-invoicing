@@ -29,7 +29,6 @@ class AccountMove(models.Model):
         res = super().create(vals)
         #todo impact in perf? 
         res.with_context(check_move_validity=False)._recompute_tax_lines()
-        # if any([move_line.discount_fixed for move_line in res.invoice_line_ids]):
         res.with_context(check_move_validity=False)._onchange_invoice_line_ids()
         return res
 
